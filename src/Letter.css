@@ -1,0 +1,27 @@
+.Letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+  border: 1px solid #333;
+}
+
+.Letter--empty {
+  background-color: #fff;
+}
+
+.Letter--wrong {
+  background-color: #999;
+  color: #fff;
+}
+
+.Letter--almost {
+  background-color: yellow;
+  color: #333;
+}
+
+.Letter--correct {
+  background-color: green;
+  color: #fff;
+}

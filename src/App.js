@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   return (
-    <Container>
+    <Container className='App'>
       <Row>
         <Col xs='3' />
         <Col xs='6'>
@@ -15,10 +15,10 @@ function App() {
               <h2>by Paxton Weathers</h2>
               <h3>idea stolen from some other dude</h3>
             </header>
-            <Board />
           </main>
         </Col>
       </Row>
+      <Board />
     </Container>
   );
 }

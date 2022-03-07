@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import { Row, Col } from 'react-bootstrap';
 
 import Letter from './Letter';
 
@@ -17,20 +16,14 @@ function Keyboard({ guessedLetters }) {
   }
 
   const renderRow = (row) => {
-    return _.map(row, (letter) => {
-      return (
-        <Col>
-          <Letter letter={letter} status={statusFor(letter)} />
-        </Col>
-      )
-    });
+    return _.map(row, (letter) => <Letter letter={letter} status={statusFor(letter)} />);
   };
 
   const keyboardRows = _.map(keyboard, (row) => {
     return (
-      <Row className='KeyboardRow'>
+      <div className='KeyboardRow'>
         {renderRow(row)}
-      </Row>
+      </div>
     );
   });
 

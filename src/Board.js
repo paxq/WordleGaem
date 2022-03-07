@@ -19,7 +19,11 @@ function Board() {
     M: 'wrong',
     N: 'wrong',
     R: 'almost',
-    T: 'wrong'
+    T: 'wrong',
+    F: 'wrong',
+    I: 'wrong',
+    L: 'wrong',
+    K: 'wrong'
   };
 
   const turns = [
@@ -38,11 +42,11 @@ function Board() {
       {letter: 'E', status: 'almost' }
     ],
     [
-      defaultLetter,
-      defaultLetter,
-      defaultLetter,
-      defaultLetter,
-      defaultLetter
+      {letter: 'F', status: 'wrong' },
+      {letter: 'L', status: 'wrong' },
+      {letter: 'I', status: 'wrong' },
+      {letter: 'C', status: 'wrong' },
+      {letter: 'K', status: 'wrong' }
     ],
     [
       defaultLetter,

@@ -11,12 +11,19 @@ import './Board.css';
 function Board() {
   const defaultLetter = { letter: null, status: null };
   const [currentWord, setCurrentWord] = useState([]);
+  const maxLetters = 5;
 
   const addLetterToCurrentWord = (letter) => {
+    if (currentWord.length < maxLetters)
+    {
     console.log('addLetterToCurrentWord()', letter);
     const newCurrentWord = _.clone(currentWord);
     newCurrentWord.push(letter);
     setCurrentWord(newCurrentWord);
+    console.log({ currentWord });
+    }
+    
+
   };
 
   const solutionWord = 'WEARY';

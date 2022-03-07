@@ -6,9 +6,9 @@ import Letter from './Letter';
 import './Guess.css';
 
 function Guess({ guess }) {
-  const guess_letters = _.map(guess, (part) => {
+  const guess_letters = _.map(guess, (part, i) => {
     return (
-      <Col xs={2} className='mx-auto'>
+      <Col xs={2} key={i} className='mx-auto'>
         <Letter letter={part.letter} status={part.status} />
       </Col>
     )

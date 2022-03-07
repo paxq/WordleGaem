@@ -1,4 +1,6 @@
+
 import _ from 'lodash';
+import { useState } from "react";
 import { Row, Col } from 'react-bootstrap';
 
 import Guess from './Guess';
@@ -8,6 +10,14 @@ import './Board.css';
 
 function Board() {
   const defaultLetter = { letter: null, status: null };
+  const [currentWord, setCurrentWord] = useState([]);
+
+  const addLetterToCurrentWord = (letter) => {
+    console.log('addLetterToCurrentWord()', letter);
+    const newCurrentWord = _.clone(currentWord);
+    newCurrentWord.push(letter);
+    setCurrentWord(newCurrentWord);
+  };
 
   const solutionWord = 'WEARY';
 
@@ -71,7 +81,7 @@ function Board() {
     ]
   ];
 
-  const displayTurns = _.map(turns, (turn) => <Guess guess={turn} />);
+  const displayTurns = _.map(turns, (turn, i) => <Guess guess={turn} key={i} />);
 
   return (
     <>
@@ -82,7 +92,7 @@ function Board() {
         </Col>
       </Row>
       <div className='keyboard'>
-        <Keyboard guessedLetters={guessedLetters} />
+        <Keyboard guessedLetters={guessedLetters} addLetter={addLetterToCurrentWord} />
       </div>
     </>
   );

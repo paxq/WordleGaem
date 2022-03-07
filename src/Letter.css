@@ -12,16 +12,16 @@
 }
 
 .Letter--wrong {
-  background-color: #999;
+  background-color: rgb(133, 133, 133);
   color: #fff;
 }
 
 .Letter--almost {
-  background-color: yellow;
+  background-color: rgb(211, 214, 39);
   color: #333;
 }
 
 .Letter--correct {
-  background-color: green;
+  background-color: rgb(19, 148, 19);
   color: #fff;
 }

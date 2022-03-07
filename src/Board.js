@@ -7,28 +7,13 @@ import Guess from './Guess';
 import Keyboard from './Keyboard';
 
 import './Board.css';
+import { useBootstrapBreakpoints } from 'react-bootstrap/esm/ThemeProvider';
 
 function Board() {
+  const [currentTurn, setCurrentTurn] = useState(3);
   const defaultLetter = { letter: null, status: null };
   const [currentWord, setCurrentWord] = useState([]);
-  const maxLetters = 5;
-
-  const addLetterToCurrentWord = (letter) => {
-    if (currentWord.length < maxLetters)
-    {
-    console.log('addLetterToCurrentWord()', letter);
-    const newCurrentWord = _.clone(currentWord);
-    newCurrentWord.push(letter);
-    setCurrentWord(newCurrentWord);
-    console.log({ currentWord });
-    }
-    
-
-  };
-
-  const solutionWord = 'WEARY';
-
-  const guessedLetters = {
+  const [guessedLetters, setGuessedLetters] = useState({
     A: 'correct',
     C: 'wrong',
     E: 'almost',
@@ -41,9 +26,8 @@ function Board() {
     I: 'wrong',
     L: 'wrong',
     K: 'wrong'
-  };
-
-  const turns = [
+  });
+  const [turns, setTurns] = useState([
     [
       {letter: 'M', status: 'wrong' },
       {letter: 'A', status: 'almost' },
@@ -86,7 +70,31 @@ function Board() {
       defaultLetter,
       defaultLetter
     ]
-  ];
+  ]);
+  const maxLetters = 5;
+
+  const addLetterToCurrentWord = (letter) => {
+    if (currentWord.length < maxLetters)
+    {
+      const newCurrentWord = _.clone(currentWord);
+      console.log('addLetterToCurrentWord()', letter, newCurrentWord);
+      newCurrentWord.push(letter);
+      setCurrentWord(newCurrentWord);
+      console.log({ currentWord, newCurrentWord });
+      updateCurrentTurn(newCurrentWord);
+    }
+
+  };
+  const updateCurrentTurn = (newCurrentWord) => {
+    const newTurns = _.clone(turns);
+    const newTurn = _.map(newCurrentWord, (letter) => { return { letter, status: null } });
+    newTurns[currentTurn] = newTurn;
+    setTurns(newTurns);
+  }
+
+  const solutionWord = 'WEARY';
+
+  
 
   const displayTurns = _.map(turns, (turn, i) => <Guess guess={turn} key={i} />);
 

@@ -1,4 +1,3 @@
-
 import _ from 'lodash';
 import { useState } from "react";
 import { Row, Col } from 'react-bootstrap';
@@ -72,8 +71,17 @@ function Board() {
     ]
   ]);
   const maxLetters = 5;
-
+  
   const addLetterToCurrentWord = (letter) => {
+    if (letter == '⌫') {
+      const newCurrentWord = _.clone(currentWord);
+      console.log('popLetterToCurrentWord()');
+      newCurrentWord.pop(letter);
+      setCurrentWord(newCurrentWord);
+      console.log({ currentWord, newCurrentWord });
+      updateCurrentTurn(newCurrentWord);
+    }
+    else 
     if (currentWord.length < maxLetters)
     {
       const newCurrentWord = _.clone(currentWord);
@@ -83,8 +91,9 @@ function Board() {
       console.log({ currentWord, newCurrentWord });
       updateCurrentTurn(newCurrentWord);
     }
-
+    
   };
+  
   const updateCurrentTurn = (newCurrentWord) => {
     const newTurns = _.clone(turns);
     const newTurn = _.map(newCurrentWord, (letter) => { return { letter, status: null } });
@@ -107,7 +116,7 @@ function Board() {
         </Col>
       </Row>
       <div className='keyboard'>
-        <Keyboard guessedLetters={guessedLetters} addLetter={addLetterToCurrentWord} />
+        <Keyboard guessedLetters={guessedLetters} addLetter={addLetterToCurrentWord}/>
       </div>
     </>
   );

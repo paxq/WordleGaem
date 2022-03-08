@@ -73,6 +73,9 @@ function Board() {
   const maxLetters = 5;
   
   const addLetterToCurrentWord = (letter) => {
+    if (letter == '⏎') {
+      submitGuess();
+    }
     if (letter == '⌫') {
       const newCurrentWord = _.clone(currentWord);
       console.log('popLetterToCurrentWord()');
@@ -93,7 +96,10 @@ function Board() {
     }
     
   };
-  
+
+  const submitGuess = () => {
+    
+  }
   const updateCurrentTurn = (newCurrentWord) => {
     const newTurns = _.clone(turns);
     const newTurn = _.map(newCurrentWord, (letter) => { return { letter, status: null } });

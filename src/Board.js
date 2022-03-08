@@ -74,15 +74,20 @@ function Board() {
   
   const addLetterToCurrentWord = (letter) => {
     if (letter == '⏎') {
-      submitGuess();
+      if (currentWord.length == maxLetters) {
+        submitGuess();
+      }
     }
+    else
     if (letter == '⌫') {
-      const newCurrentWord = _.clone(currentWord);
+      if (currentWord.length > 0) {
+        const newCurrentWord = _.clone(currentWord);
       console.log('popLetterToCurrentWord()');
       newCurrentWord.pop(letter);
       setCurrentWord(newCurrentWord);
       console.log({ currentWord, newCurrentWord });
       updateCurrentTurn(newCurrentWord);
+      }
     }
     else 
     if (currentWord.length < maxLetters)
@@ -98,6 +103,7 @@ function Board() {
   };
 
   const submitGuess = () => {
+    console.log("guess submitted!");
     
   }
   const updateCurrentTurn = (newCurrentWord) => {

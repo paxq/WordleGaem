@@ -109,6 +109,9 @@ function Board() {
   const updateCurrentTurn = (newCurrentWord) => {
     const newTurns = _.clone(turns);
     const newTurn = _.map(newCurrentWord, (letter) => { return { letter, status: null } });
+    for(var i = newCurrentWord.length; i < maxLetters; i++) {
+      newTurn.push(defaultLetter);
+    }
     newTurns[currentTurn] = newTurn;
     setTurns(newTurns);
   }

@@ -99,12 +99,28 @@ function Board() {
       console.log({ currentWord, newCurrentWord });
       updateCurrentTurn(newCurrentWord);
     }
-    
   };
 
   const submitGuess = () => {
-    console.log("guess submitted!");
-    
+    const solution = solutionWord.split('');
+    const checkedTurn = [];
+    for(var i = 0; i < 5; i++) {
+      const letter = {letter: currentWord[i]};
+      if(currentWord[i] === solution[i]) {
+        letter.status = 'correct';
+      }
+      else
+      if (_.includes(solution, currentWord[i])) {
+        letter.status = 'almost';
+      }
+      else {
+        letter.status = 'wrong';
+      }
+      checkedTurn.push(letter);
+    }
+    const newTurns = _.clone(turns);
+    newTurns[currentTurn] = checkedTurn;
+    setTurns(newTurns);
   }
   const updateCurrentTurn = (newCurrentWord) => {
     const newTurns = _.clone(turns);
@@ -116,7 +132,7 @@ function Board() {
     setTurns(newTurns);
   }
 
-  const solutionWord = 'WEARY';
+  const solutionWord = 'WEARY'; 
 
   
 

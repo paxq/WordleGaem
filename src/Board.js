@@ -121,7 +121,21 @@ function Board() {
     const newTurns = _.clone(turns);
     newTurns[currentTurn] = checkedTurn;
     setTurns(newTurns);
+    updateKeyboard(checkedTurn);
   }
+  
+  const updateKeyboard = (checkedTurn) => {
+    console.log({ guessedLetters });
+    const newGuessedLetters = _.clone(guessedLetters);
+    for(var i = 0; i < 5; i++) {
+      console.log({ i, ...checkedTurn[i] });
+      if(guessedLetters.status == 'correct') {
+        newGuessedLetters[checkedTurn[i].letter] = checkedTurn[i].status;
+      }
+    }
+    setGuessedLetters(newGuessedLetters);
+  }
+
   const updateCurrentTurn = (newCurrentWord) => {
     const newTurns = _.clone(turns);
     const newTurn = _.map(newCurrentWord, (letter) => { return { letter, status: null } });

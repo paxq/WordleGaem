@@ -73,6 +73,10 @@ function Board() {
   const maxLetters = 5;
   
   const addLetterToCurrentWord = (letter) => {
+    if(currentTurn == 999) {
+      return
+    }
+    else
     if (letter == '⏎') {
       if (currentWord.length == maxLetters) {
         submitGuess();
@@ -82,10 +86,8 @@ function Board() {
     if (letter == '⌫') {
       if (currentWord.length > 0) {
         const newCurrentWord = _.clone(currentWord);
-      console.log('popLetterToCurrentWord()');
       newCurrentWord.pop(letter);
       setCurrentWord(newCurrentWord);
-      console.log({ currentWord, newCurrentWord });
       updateCurrentTurn(newCurrentWord);
       }
     }
@@ -93,10 +95,8 @@ function Board() {
     if (currentWord.length < maxLetters)
     {
       const newCurrentWord = _.clone(currentWord);
-      console.log('addLetterToCurrentWord()', letter, newCurrentWord);
       newCurrentWord.push(letter);
       setCurrentWord(newCurrentWord);
-      console.log({ currentWord, newCurrentWord });
       updateCurrentTurn(newCurrentWord);
     }
   };
@@ -122,18 +122,26 @@ function Board() {
     newTurns[currentTurn] = checkedTurn;
     setTurns(newTurns);
     updateKeyboard(checkedTurn);
+    advanceTurnOrPreventChanges(checkedTurn);
   }
-  
+
   const updateKeyboard = (checkedTurn) => {
-    console.log({ guessedLetters });
     const newGuessedLetters = _.clone(guessedLetters);
     for(var i = 0; i < 5; i++) {
-      console.log({ i, ...checkedTurn[i] });
-      if(guessedLetters.status == 'correct') {
+      if(newGuessedLetters[checkedTurn[i].letter] !== 'correct') {
         newGuessedLetters[checkedTurn[i].letter] = checkedTurn[i].status;
       }
     }
     setGuessedLetters(newGuessedLetters);
+  }
+  const advanceTurnOrPreventChanges = (checkedTurn) => {
+    if(_.every(checkedTurn, ['status', 'correct']) || currentTurn >= 5) {
+      setCurrentTurn(999);
+    }
+    else {
+      setCurrentTurn(currentTurn + 1);
+      setCurrentWord([]);
+    }
   }
 
   const updateCurrentTurn = (newCurrentWord) => {

@@ -5,48 +5,51 @@ import { Row, Col } from 'react-bootstrap';
 import Guess from './Guess';
 import Keyboard from './Keyboard';
 
+import {selectRandomWord} from './wordList';
+
 import './Board.css';
 import { useBootstrapBreakpoints } from 'react-bootstrap/esm/ThemeProvider';
 
 function Board() {
+  const [solutionWord, setSolutionWord] = useState(selectRandomWord());
   const [currentTurn, setCurrentTurn] = useState(3);
   const defaultLetter = { letter: null, status: null };
   const [currentWord, setCurrentWord] = useState([]);
   const [guessedLetters, setGuessedLetters] = useState({
-    A: 'correct',
-    C: 'wrong',
-    E: 'almost',
-    H: 'wrong',
-    M: 'wrong',
-    N: 'wrong',
-    R: 'almost',
-    T: 'wrong',
-    F: 'wrong',
-    I: 'wrong',
-    L: 'wrong',
-    K: 'wrong'
+    a: 'correct',
+    c: 'wrong',
+    e: 'almost',
+    h: 'wrong',
+    m: 'wrong',
+    n: 'wrong',
+    r: 'almost',
+    t: 'wrong',
+    f: 'wrong',
+    i: 'wrong',
+    l: 'wrong',
+    k: 'wrong'
   });
   const [turns, setTurns] = useState([
     [
-      {letter: 'M', status: 'wrong' },
-      {letter: 'A', status: 'almost' },
-      {letter: 'T', status: 'wrong' },
-      {letter: 'C', status: 'wrong' },
-      {letter: 'H', status: 'wrong' }
+      {letter: 'm', status: 'wrong' },
+      {letter: 'a', status: 'almost' },
+      {letter: 't', status: 'wrong' },
+      {letter: 'c', status: 'wrong' },
+      {letter: 'h', status: 'wrong' }
     ],
     [
-      {letter: 'C', status: 'wrong' },
-      {letter: 'R', status: 'almost' },
-      {letter: 'A', status: 'correct' },
-      {letter: 'N', status: 'wrong' },
-      {letter: 'E', status: 'almost' }
+      {letter: 'c', status: 'wrong' },
+      {letter: 'r', status: 'almost' },
+      {letter: 'a', status: 'correct' },
+      {letter: 'n', status: 'wrong' },
+      {letter: 'e', status: 'almost' }
     ],
     [
-      {letter: 'F', status: 'wrong' },
-      {letter: 'L', status: 'wrong' },
-      {letter: 'I', status: 'wrong' },
-      {letter: 'C', status: 'wrong' },
-      {letter: 'K', status: 'wrong' }
+      {letter: 'f', status: 'wrong' },
+      {letter: 'l', status: 'wrong' },
+      {letter: 'i', status: 'wrong' },
+      {letter: 'c', status: 'wrong' },
+      {letter: 'k', status: 'wrong' }
     ],
     [
       defaultLetter,
@@ -70,8 +73,8 @@ function Board() {
       defaultLetter
     ]
   ]);
+
   const maxLetters = 5;
-  
   const addLetterToCurrentWord = (letter) => {
     if(currentTurn == 999) {
       return
@@ -123,7 +126,7 @@ function Board() {
     setTurns(newTurns);
     updateKeyboard(checkedTurn);
     advanceTurnOrPreventChanges(checkedTurn);
-  }
+  };
 
   const updateKeyboard = (checkedTurn) => {
     const newGuessedLetters = _.clone(guessedLetters);
@@ -133,7 +136,7 @@ function Board() {
       }
     }
     setGuessedLetters(newGuessedLetters);
-  }
+  };
   const advanceTurnOrPreventChanges = (checkedTurn) => {
     if(_.every(checkedTurn, ['status', 'correct']) || currentTurn >= 5) {
       setCurrentTurn(999);
@@ -142,7 +145,7 @@ function Board() {
       setCurrentTurn(currentTurn + 1);
       setCurrentWord([]);
     }
-  }
+  };
 
   const updateCurrentTurn = (newCurrentWord) => {
     const newTurns = _.clone(turns);
@@ -152,11 +155,9 @@ function Board() {
     }
     newTurns[currentTurn] = newTurn;
     setTurns(newTurns);
-  }
+  };
 
-  const solutionWord = 'WEARY'; 
-
-  
+  console.log(solutionWord);
 
   const displayTurns = _.map(turns, (turn, i) => <Guess guess={turn} key={i} />);
 

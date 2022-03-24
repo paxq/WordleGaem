@@ -10,7 +10,7 @@ function Letter({ letter, status, addLetter }) {
 
   return (
     <div className={`Letter Letter--${className}`} onClick={() => { if (_.isFunction(addLetter)) { addLetter(letter) } }}>
-      {letter}
+      {_.capitalize(letter)}
     </div>
   );
 }

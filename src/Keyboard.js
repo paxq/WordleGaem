@@ -19,7 +19,7 @@ function Keyboard({ guessedLetters, addLetter }) {
 
   const keyboardRows = _.map(keyboard, (row, i) => {
     return (
-      <div className='KeyboardRow' key={i}>
+      <div className='KeyboardRow mb-2' key={i}>
         {renderRow(row)}
       </div>
     );

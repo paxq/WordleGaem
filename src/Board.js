@@ -8,7 +8,6 @@ import Keyboard from './Keyboard';
 import {selectRandomWord} from './wordList';
 
 import './Board.css';
-import { useBootstrapBreakpoints } from 'react-bootstrap/esm/ThemeProvider';
 
 function Board() {
   const [solutionWord, setSolutionWord] = useState(selectRandomWord());

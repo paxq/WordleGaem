@@ -6,9 +6,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1rem;
-}
-
-.KeyboardRow .Letter {
-  margin: 0 1rem;
 }

@@ -10,7 +10,7 @@ import {selectRandomWord} from './wordList';
 import './Board.css';
 
 function Board() {
-  const [solutionWord, setSolutionWord] = useState(selectRandomWord());
+  const [solutionWord] = useState(selectRandomWord());
   const [currentTurn, setCurrentTurn] = useState(3);
   const defaultLetter = { letter: null, status: null };
   const [currentWord, setCurrentWord] = useState([]);
@@ -75,17 +75,17 @@ function Board() {
 
   const maxLetters = 5;
   const addLetterToCurrentWord = (letter) => {
-    if(currentTurn == 999) {
+    if(currentTurn === 999) {
       return
     }
     else
-    if (letter == '⏎') {
-      if (currentWord.length == maxLetters) {
+    if (letter === '⏎') {
+      if (currentWord.length === maxLetters) {
         submitGuess();
       }
     }
     else
-    if (letter == '⌫') {
+    if (letter === '⌫') {
       if (currentWord.length > 0) {
         const newCurrentWord = _.clone(currentWord);
       newCurrentWord.pop(letter);

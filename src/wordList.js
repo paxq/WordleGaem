@@ -1945,6 +1945,7 @@ const wordList = [
   'epoch',
   'epode',
   'epopt',
+  'epoxy',
   'epulo',
   'equal',
   'equid',

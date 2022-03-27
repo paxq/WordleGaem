@@ -14,41 +14,28 @@ function Board() {
   const [currentTurn, setCurrentTurn] = useState(3);
   const defaultLetter = { letter: null, status: null };
   const [currentWord, setCurrentWord] = useState([]);
-  const [guessedLetters, setGuessedLetters] = useState({
-    a: 'correct',
-    c: 'wrong',
-    e: 'almost',
-    h: 'wrong',
-    m: 'wrong',
-    n: 'wrong',
-    r: 'almost',
-    t: 'wrong',
-    f: 'wrong',
-    i: 'wrong',
-    l: 'wrong',
-    k: 'wrong'
-  });
+  const [guessedLetters, setGuessedLetters] = useState({});
   const [turns, setTurns] = useState([
     [
-      {letter: 'm', status: 'wrong' },
-      {letter: 'a', status: 'almost' },
-      {letter: 't', status: 'wrong' },
-      {letter: 'c', status: 'wrong' },
-      {letter: 'h', status: 'wrong' }
+      defaultLetter,
+      defaultLetter,
+      defaultLetter,
+      defaultLetter,
+      defaultLetter
     ],
     [
-      {letter: 'c', status: 'wrong' },
-      {letter: 'r', status: 'almost' },
-      {letter: 'a', status: 'correct' },
-      {letter: 'n', status: 'wrong' },
-      {letter: 'e', status: 'almost' }
+      defaultLetter,
+      defaultLetter,
+      defaultLetter,
+      defaultLetter,
+      defaultLetter
     ],
     [
-      {letter: 'f', status: 'wrong' },
-      {letter: 'l', status: 'wrong' },
-      {letter: 'i', status: 'wrong' },
-      {letter: 'c', status: 'wrong' },
-      {letter: 'k', status: 'wrong' }
+      defaultLetter,
+      defaultLetter,
+      defaultLetter,
+      defaultLetter,
+      defaultLetter
     ],
     [
       defaultLetter,
